@@ -375,7 +375,7 @@ function addRoutingEvents() {
      (window as any).oauthListenerAttached = true;
      window.addEventListener('message', (event: MessageEvent) => {
        const origin = event.origin;
-       if (!origin.endsWith('.run.app') && !origin.includes('localhost') && !origin.endsWith('.vercel.app')) {
+       if (origin !== window.location.origin) {
          return;
        }
        if (event.data?.type === 'OAUTH_AUTH_SUCCESS') {
